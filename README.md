@@ -150,4 +150,8 @@ streamlit run streamlit_app.py
 ## 👨‍💻 Author
 
 **PandeyPranjal**
+<<<<<<< HEAD
 🔗 https://github.com/PandeyPranjal
+=======
+🔗 https://github.com/PandeyPranjal
+>>>>>>> 98c9b9e (added __init__.py for package structure)
