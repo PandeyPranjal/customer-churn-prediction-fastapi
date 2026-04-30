@@ -5,7 +5,7 @@ import requests
 
 st.title("Customer Churn Prediction")
 
-# --- Inputs (match your schema EXACTLY) ---
+# --- Inputs ---
 gender = st.selectbox("Gender", ["Male", "Female"])
 SeniorCitizen = st.selectbox("Senior Citizen", [0, 1])
 Partner = st.selectbox("Partner", ["Yes", "No"])
@@ -36,6 +36,7 @@ TotalCharges = st.number_input("Total Charges", min_value=0.0)
 
 # --- Prediction ---
 if st.button("Predict"):
+
     input_data = {
         "gender": gender,
         "SeniorCitizen": SeniorCitizen,
@@ -60,14 +61,22 @@ if st.button("Predict"):
 
     try:
         response = requests.post(
-            "http://127.0.0.1:8000/predict",
-            json=input_data
+            "https://customer-churn-prediction-rd7z.onrender.com/predict",
+            json=input_data,
+            timeout=30
         )
 
-        result = response.json()
+        if response.status_code == 200:
+            result = response.json()
 
-        st.success(f"Prediction: {'Churn' if result['churn'] == 1 else 'No Churn'}")
-        st.write(f"Probability: {result['probability']:.2f}")
+            st.success(f"Prediction: {'Churn' if result['churn'] == 1 else 'No Churn'}")
+            st.write(f"Probability: {result['probability']:.2f}")
+
+        else:
+            st.error(f"API Error: {response.status_code}")
+
+    except requests.exceptions.Timeout:
+        st.error("Request timed out. Server may be waking up. Try again.")
 
     except Exception as e:
         st.error(f"Error: {e}")
