@@ -62,8 +62,8 @@ Prediction Output (Churn + Probability)
 
 ## 🌐 Live Demo
 
-* 🔗 API (Swagger UI): **[Add your Render link here]**
-* 🔗 Streamlit App: **[Add your Streamlit link here]**
+* 🔗 API (Swagger UI): https://customer-churn-prediction-rd7z.onrender.com/docs
+* 🔗 Streamlit App: https://customer-churn-prediction-built-by-pranjal.streamlit.app/
 
 ---
 
@@ -150,8 +150,4 @@ streamlit run streamlit_app.py
 ## 👨‍💻 Author
 
 **PandeyPranjal**
-<<<<<<< HEAD
-🔗 https://github.com/PandeyPranjal
-=======
-🔗 https://github.com/PandeyPranjal
->>>>>>> 98c9b9e (added __init__.py for package structure)
+
