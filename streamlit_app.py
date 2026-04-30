@@ -1,7 +1,7 @@
-# streamlit_app.py
 
 import streamlit as st
 import requests
+import time
 
 st.title("Customer Churn Prediction")
 
@@ -59,24 +59,37 @@ if st.button("Predict"):
         "TotalCharges": TotalCharges
     }
 
-    try:
-        response = requests.post(
-            "https://customer-churn-prediction-rd7z.onrender.com/predict",
-            json=input_data,
-            timeout=30
-        )
+    with st.spinner("Predicting... please wait"):
 
-        if response.status_code == 200:
-            result = response.json()
+        try:
+            for attempt in range(2):  # retry once
 
-            st.success(f"Prediction: {'Churn' if result['churn'] == 1 else 'No Churn'}")
-            st.write(f"Probability: {result['probability']:.2f}")
+                try:
+                    response = requests.post(
+                        "https://customer-churn-prediction-rd7z.onrender.com/predict",
+                        json=input_data,
+                        timeout=60
+                    )
 
-        else:
-            st.error(f"API Error: {response.status_code}")
+                    if response.status_code == 200:
+                        result = response.json()
 
-    except requests.exceptions.Timeout:
-        st.error("Request timed out. Server may be waking up. Try again.")
+                        st.success(
+                            f"Prediction: {'Churn' if result['churn'] == 1 else 'No Churn'}"
+                        )
+                        st.write(f"Probability: {result['probability']:.2f}")
+                        break
 
-    except Exception as e:
-        st.error(f"Error: {e}")
+                    else:
+                        st.error(f"API Error: {response.status_code}")
+                        break
+
+                except requests.exceptions.Timeout:
+                    if attempt == 0:
+                        st.warning("Server waking up... retrying in 5 seconds")
+                        time.sleep(5)
+                    else:
+                        st.error("Server is slow. Please try again.")
+
+        except Exception as e:
+            st.error(f"Error: {e}")
