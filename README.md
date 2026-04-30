@@ -1,87 +1,153 @@
-🚀 Customer Churn Prediction System (FastAPI + Streamlit)
-📌 Overview
+# 🚀 Customer Churn Prediction System (FastAPI + Streamlit)
 
-This project is a production-style Machine Learning system that predicts whether a telecom customer is likely to churn.
-It integrates a trained ML model with a FastAPI backend for real-time inference and a Streamlit frontend for interactive usage.
+## 📌 Overview
 
-⚡ Features
-🔍 Real-time churn prediction via REST API
-🧠 Machine Learning model (Random Forest)
-⚖️ Class imbalance handled using SMOTE
-🧾 Structured input validation using Pydantic
-🌐 Interactive UI with Streamlit
-📊 End-to-end pipeline: Input → Preprocessing → Model → Prediction
-🏗️ System Architecture
+This project is a **production-oriented Machine Learning system** that predicts whether a telecom customer will churn.
+It integrates a trained model with a **FastAPI backend for real-time inference** and a **Streamlit frontend for interactive usage**.
+
+Unlike basic ML projects, this system focuses on **deployment, API design, and real-world usability**.
+
+---
+
+## ⚡ Key Features
+
+* 🔍 Real-time churn prediction via REST API
+* 🧠 Random Forest model trained on Telco dataset
+* ⚖️ Class imbalance handled using SMOTE
+* 🧾 Input validation using Pydantic
+* 🌐 Interactive UI with Streamlit
+* 📊 End-to-end pipeline from input to prediction
+
+---
+
+## 🏗️ System Architecture
+
+```
 User Input (Streamlit UI)
         ↓
-FastAPI Backend (/predict endpoint)
+FastAPI Backend (/predict)
         ↓
-Data Preprocessing + Encoding
+Data Preprocessing (Encoding + Feature Alignment)
         ↓
-Trained ML Model (Random Forest)
+Machine Learning Model (Random Forest)
         ↓
-Prediction Output (Churn / No Churn + Probability)
-🛠️ Tech Stack
-Python
-FastAPI
-Streamlit
-Scikit-learn
-Pandas, NumPy
-Imbalanced-learn (SMOTE)
-📊 Model Details
-Algorithm: Random Forest Classifier
-Dataset: Telco Customer Churn
-Accuracy: ~85%
-Preprocessing:
-Label Encoding for categorical variables
-Handling missing values
-Feature alignment during inference
-🌐 Live Demo
-🔗 API (Swagger UI): [Add your Render link here]
-🔗 Streamlit App: [Add your Streamlit link here]
-📂 Project Structure
-customer-churn-fastapi-ml/
+Prediction Output (Churn + Probability)
+```
+
+---
+
+## 🛠️ Tech Stack
+
+* Python
+* FastAPI
+* Streamlit
+* Scikit-learn
+* Pandas, NumPy
+* Imbalanced-learn (SMOTE)
+
+---
+
+## 📊 Model Details
+
+* Algorithm: Random Forest Classifier
+* Dataset: Telco Customer Churn
+* Accuracy: ~85%
+* Preprocessing:
+
+  * Label Encoding
+  * Handling missing values
+  * Feature alignment during inference
+
+---
+
+## 🌐 Live Demo
+
+* 🔗 API (Swagger UI): **[Add your Render link here]**
+* 🔗 Streamlit App: **[Add your Streamlit link here]**
+
+---
+
+## 📂 Project Structure
+
+```
+customer-churn-prediction-fastapi/
 │
-├── app/                # FastAPI backend
+├── app/
 │   ├── main.py
 │   ├── predict.py
 │   ├── schema.py
+│   └── __init__.py
 │
-├── model/              # Saved model & encoders
+├── model/
 │   ├── customer_churn_model.pkl
 │   ├── encoders.pkl
 │
-├── notebook/           # Training & analysis
+├── notebook/
 │   └── churn_analysis.ipynb
 │
-├── streamlit_app.py    # Frontend UI
+├── streamlit_app.py
 ├── requirements.txt
 ├── README.md
-▶️ How to Run Locally
-1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/customer-churn-predition-fastapi.git
-cd customer-churn-fastapi-ml
-2. Install dependencies
+```
+
+---
+
+## ▶️ How to Run Locally
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/PandeyPranjal/customer-churn-prediction-fastapi.git
+cd customer-churn-prediction-fastapi
+```
+
+### 2. Install dependencies
+
+```
 pip install -r requirements.txt
-3. Run FastAPI server
+```
+
+### 3. Run FastAPI server
+
+```
 uvicorn app.main:app --reload
+```
 
 Open:
 
+```
 http://127.0.0.1:8000/docs
-4. Run Streamlit app
-streamlit run streamlit_app.py
-🧠 Key Learnings
-Building REST APIs for ML models using FastAPI
-Handling feature consistency between training and inference
-Managing class imbalance using SMOTE
-Deploying ML systems for real-world usage
-📌 Future Improvements
-Docker containerization
-CI/CD pipeline integration
-Model monitoring & logging
-Use of advanced feature engineering
-👨‍💻 Author
+```
 
-PandeyPranjal
-🔗 https://github.com/pandeypranjal
+---
+
+### 4. Run Streamlit UI
+
+```
+streamlit run streamlit_app.py
+```
+
+---
+
+## 🧠 Key Learnings
+
+* Building ML inference APIs using FastAPI
+* Handling feature consistency between training and inference
+* Managing class imbalance using SMOTE
+* Designing end-to-end ML systems
+
+---
+
+## 📌 Future Improvements
+
+* Docker containerization
+* CI/CD pipeline integration
+* Model monitoring & logging
+* Replace LabelEncoder with robust pipelines
+
+---
+
+## 👨‍💻 Author
+
+**PandeyPranjal**
+🔗 https://github.com/PandeyPranjal
