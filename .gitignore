@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.env
+.venv/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Data files (avoid uploading heavy data)
+data/
+
+# OS files
+.DS_Store
+Thumbs.db
